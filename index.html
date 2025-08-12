@@ -1,1 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Network+ Practice Questions: Domain 2.0</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap" rel="stylesheet">
+</head>
+<body class="bg-gray-50 dark:bg-gray-900 text-gray-800 dark:text-gray-200 p-4 sm:p-6 lg:p-8">
+    <div class="max-w-4xl mx-auto">
+        <h1 class="text-3xl font-bold text-center text-gray-900 dark:text-white mb-4">CompTIA Network+ (N10-009) Practice Questions</h1>
+        <p class="text-center text-gray-600 dark:text-gray-400 mb-10">Domain 2.0: Network Implementations</p>
 
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-6 text-gray-900 dark:text-white">Objective 2.1: Routing Technologies</h2>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 1</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following routing technologies uses a successor and a feasible successor? [cite: 2]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]IS-IS [cite: 3]</p>
+                    <p>B. [cite_start]OSPF [cite: 5]</p>
+                    <p>C. [cite_start]BGP [cite: 6]</p>
+                    <p>D. [cite_start]EIGRP [cite: 7]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: D. EIGRP</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> <strong>EIGRP (Enhanced Interior Gateway Routing Protocol)</strong> is well-known for its fast convergence time, which it achieves by pre-calculating backup routes. The primary, best path to a destination is called the **Successor**. A pre-qualified, loop-free backup path is called the **Feasible Successor**. If the Successor route fails, the router can immediately switch to the Feasible Successor without needing to recalculate the entire network topology, making it very efficient.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>OSPF and IS-IS:</strong> These protocols build a map of the network and run an algorithm to find the single best path. If that path fails, they must run the algorithm again to find a new best path. They don't use the "feasible successor" terminology or concept.</li>
+                                <li><strong>BGP:</strong> As the routing protocol for the internet, BGP uses a complex set of path attributes (like AS-Path, Local Preference) to determine the best path between different autonomous systems. It does not use the successor/feasible successor model.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 2</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">A network administrator wants to configure a backup route in case the primary route fails. A dynamic routing protocol is not installed on the router. [cite_start]Which of the following routing features should the administrator choose to accomplish this task? [cite: 8, 9, 10]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Neighbor adjacency [cite: 11]</p>
+                    <p>B. [cite_start]Link state flooding [cite: 12]</p>
+                    <p>C. [cite_start]Administrative distance [cite: 13]</p>
+                    <p>D. [cite_start]Hop count [cite: 14]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: C. Administrative distance</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> <strong>Administrative Distance (AD)</strong> is a number (0-255) that a router uses to rank the trustworthiness of a routing source; a lower number is better. Since no dynamic protocol is used, the admin must use static routes. They can configure a "floating static route" by creating two static routes: one with the default AD (e.g., 1) and a backup route with a higher AD (e.g., 5). The router will install the primary route. If that route's interface goes down, the router removes it from the routing table and "floats" the backup route with the higher AD into place.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Neighbor adjacency & Link state flooding:</strong> These are functions of dynamic routing protocols like OSPF and EIGRP, which are not in use here.</li>
+                                <li><strong>Hop count:</strong> This is a metric used by protocols like RIP to measure the number of routers a packet must cross. It doesn't determine the trustworthiness or selection between two static routes.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 3</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following protocols is used to route traffic on the public internet? [cite: 15]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]BGP [cite: 16]</p>
+                    <p>B. [cite_start]OSPF [cite: 17]</p>
+                    <p>C. [cite_start]EIGRP [cite: 18]</p>
+                    <p>D. [cite_start]RIP [cite: 19]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. BGP</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> The internet is a massive network of networks, where each network is an "Autonomous System" (AS). **BGP (Border Gateway Protocol)** is the only protocol designed to exchange routing information between these different ASes. It is the standardized Exterior Gateway Protocol (EGP) that makes global internet routing possible.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>OSPF, EIGRP, and RIP:</strong> These are Interior Gateway Protocols (IGPs). They are designed to manage routing *within* a single autonomous system (like a single company's corporate network), not between them on the public internet.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 4</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following routing protocols uses an autonomous system number? [cite: 20]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]IS-IS [cite: 21]</p>
+                    <p>B. [cite_start]OSPF [cite: 22]</p>
+                    <p>C. [cite_start]BGP [cite: 23]</p>
+                    <p>D. [cite_start]EIGRP [cite: 24]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: C. BGP</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> An **Autonomous System (AS)** is a collection of routers under a single administrative authority, identified by a unique **Autonomous System Number (ASN)**. **BGP** is the protocol that routes traffic *between* these different ASes on the internet. It fundamentally relies on ASNs to identify networks and make routing decisions.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>EIGRP:</strong> While EIGRP configuration requires an "autonomous system" number, it's used locally to identify which routers belong to the same EIGRP domain and is not a globally unique number used for internet routing.</li>
+                                <li><strong>OSPF and IS-IS:</strong> These protocols operate within a single AS and do not use an ASN as part of their core routing logic. They use concepts like areas and process IDs for organization.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 5</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following protocols has a default administrative distance value of 90? [cite: 25]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]RIP [cite: 26]</p>
+                    <p>B. [cite_start]EIGRP [cite: 27]</p>
+                    <p>C. [cite_start]OSPF [cite: 28]</p>
+                    <p>D. [cite_start]BGP [cite: 29]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: B. EIGRP</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> Each routing protocol is assigned a default **Administrative Distance (AD)** to indicate its trustworthiness (lower is better). For Cisco routers, the default AD for internal **EIGRP** routes is **90**. This makes it more preferred than OSPF (110) and RIP (120) but less preferred than a directly connected interface (0) or a static route (1).</p>
+                            <p class="mt-2"><strong>Why others are incorrect (Common Cisco Defaults):</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>RIP:</strong> Default AD is 120.</li>
+                                <li><strong>OSPF:</strong> Default AD is 110.</li>
+                                <li><strong>BGP:</strong> Default AD is 20 for external BGP (eBGP) and 200 for internal BGP (iBGP).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 6</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">In an environment with one router, which of the following will allow a network engineer to communicate between VLANs without purchasing additional hardware? [cite: 30]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Subinterfaces [cite: 31]</p>
+                    <p>B. [cite_start]VXLAN [cite: 32]</p>
+                    <p>C. [cite_start]Layer 3 switch [cite: 35]</p>
+                    <p>D. [cite_start]VIP [cite: 36]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. Subinterfaces</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> This scenario describes a classic "router-on-a-stick" configuration. **Subinterfaces** are logical, virtual interfaces created on a single physical router port. Each subinterface can be assigned to a different VLAN and given its own IP address to act as the default gateway for that VLAN. This allows a single physical router connection to route traffic between multiple VLANs.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>VXLAN:</strong> This is an advanced tunneling protocol used to create virtual networks, often in large data centers. It's overly complex for this simple task.</li>
+                                <li><strong>Layer 3 switch:</strong> This is additional hardware that can perform routing, but the question specifies not purchasing additional hardware.</li>
+                                <li><strong>VIP (Virtual IP):</strong> This is a single IP address shared among multiple devices, typically used for redundancy (like in FHRP) or load balancing, not for inter-VLAN routing itself.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 7</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following allows an organization to map multiple internal devices to a single external-facing IP address? [cite: 37]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]NAT [cite: 38]</p>
+                    <p>B. [cite_start]BGP [cite: 39]</p>
+                    <p>C. [cite_start]OSPF [cite: 40]</p>
+                    <p>D. [cite_start]FHRP [cite: 41]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. NAT</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                           <p><strong>Why this is correct:</strong> <strong>NAT (Network Address Translation)</strong> is a technology used on routers and firewalls to translate private, internal IP addresses (like 192.168.1.100) into one or more public, external IP addresses. This allows many devices on a private network to share a single public IP address to access the internet, conserving the limited supply of public IPv4 addresses.</p>
+                           <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                           <ul class="list-disc list-inside ml-4">
+                               <li><strong>BGP and OSPF:</strong> These are routing protocols that determine the best path for data, they don't translate addresses.</li>
+                               <li><strong>FHRP (First Hop Redundancy Protocol):</strong> This is a group of protocols (like HSRP, VRRP) that provide a redundant default gateway; it doesn't map multiple devices to one IP.</li>
+                           </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 8</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following should a company implement in order to share a single IP address among all the employees in the office? [cite: 42]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]STP [cite: 43]</p>
+                    <p>B. [cite_start]BGP [cite: 44]</p>
+                    <p>C. [cite_start]PAT [cite: 45]</p>
+                    <p>D. [cite_start]VXLAN [cite: 46]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-800 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: C. PAT</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> <strong>PAT (Port Address Translation)</strong>, also known as NAT Overload, is the most common form of NAT. It maps multiple private IP addresses to a single public IP address by also translating the source port number. For example, PC1's traffic might leave as `PublicIP:3001` and PC2's as `PublicIP:3002`. The router keeps a table of these mappings to direct return traffic to the correct internal device. This allows thousands of employees to share one public IP address.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>STP (Spanning Tree Protocol):</strong> Prevents loops on Layer 2 switches.</li>
+                                <li><strong>BGP (Border Gateway Protocol):</strong> An internet routing protocol.</li>
+                                <li><strong>VXLAN (Virtual Extensible LAN):</strong> A network virtualization technology.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 9</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following technologies uses a VIP to provide gateway redundancy between two routers? [cite: 47]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]LACP [cite: 48]</p>
+                    <p>B. [cite_start]PAT [cite: 49]</p>
+                    <p>C. [cite_start]FHRP [cite: 50]</p>
+                    <p>D. [cite_start]BGP [cite: 51]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: C. FHRP</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> **FHRP (First Hop Redundancy Protocol)** is a category of protocols (like HSRP, VRRP, GLBP) designed to prevent the default gateway from being a single point of failure. Two or more routers work together to present a single **VIP (Virtual IP)** address to the network clients. One router is "active" and handles the traffic, while the other(s) are on standby. If the active router fails, a standby router instantly takes over the VIP, ensuring clients always have a working gateway.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>LACP (Link Aggregation Control Protocol):</strong> Bundles multiple physical ports into a single logical link for increased bandwidth and redundancy, but doesn't provide gateway redundancy.</li>
+                                <li><strong>PAT (Port Address Translation):</strong> Translates private IPs to a public IP.</li>
+                                <li><strong>BGP (Border Gateway Protocol):</strong> An internet routing protocol.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 10</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">A systems administrator installs multiple web servers and intends to use the First Hop Redundancy Protocol to control routing to the servers. [cite_start]Which of the following types of IP addresses should the administrator use to support this routing approach? [cite: 52, 53]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Virtual [cite: 54]</p>
+                    <p>B. [cite_start]Gateway [cite: 55]</p>
+                    <p>C. [cite_start]Static [cite: 56]</p>
+                    <p>D. [cite_start]Dynamic [cite: 57]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. Virtual</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> As explained in the previous question, **First Hop Redundancy Protocols (FHRP)** work by creating a **Virtual IP (VIP)** address. This VIP is not tied to any single physical device but is shared among the redundant routers or servers. Clients are configured to use this VIP as their destination, and the FHRP protocol ensures that one of the active devices will always respond to traffic sent to that virtual address.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Gateway, Static, Dynamic:</strong> These terms describe roles or assignment methods for IP addresses, but the specific type of address used by FHRP to create a redundant, shared presence is a virtual IP.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 11</h4>
+                [cite_start]<p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following most likely requires the use of subinterfaces? [cite: 58]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]A router with only one available LAN port [cite: 59]</p>
+                    <p>B. [cite_start]A firewall performing deep packet inspection [cite: 60]</p>
+                    <p>C. [cite_start]A hub utilizing jumbo frames [cite: 61]</p>
+                    <p>D. [cite_start]A switch using Spanning Tree Protocol [cite: 62]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. A router with only one available LAN port</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> The primary use case for **subinterfaces** is to allow a single physical router interface to handle traffic for multiple VLANs. This is called a "router-on-a-stick" configuration. If a router needs to provide routing for several networks (VLANs) but only has one physical port to connect to the switch, subinterfaces are the solution. The physical port is connected to a trunk port on the switch, and each subinterface is configured to handle traffic for a specific VLAN tag.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Firewall, Hub, Switch using STP:</strong> None of these technologies inherently require subinterfaces. They are all related to different networking functions (security, Layer 1 connectivity, loop prevention).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold border-b-2 border-blue-500 pb-2 mb-6 text-gray-900 dark:text-white">Objective 2.2: Switching Technologies</h2>
+            
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 12</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">A network administrator is configuring a new switch and wants to connect two ports to the core switch to ensure redundancy. [cite_start]Which of the following configurations would meet this requirement? [cite: 64, 65]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Full duplex [cite: 66]</p>
+                    <p>B. [cite_start]802.1Q tagging [cite: 71]</p>
+                    <p>C. [cite_start]Native VLAN [cite: 72]</p>
+                    <p>D. [cite_start]Link aggregation [cite: 73]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: D. Link aggregation</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                           <p><strong>Why this is correct:</strong> <strong>Link Aggregation** (often using the protocol LACP, 802.3ad) is a technique that bundles multiple physical network connections into a single logical link. This provides two key benefits: increased total bandwidth (the sum of the links) and **redundancy**. If one of the physical links in the bundle fails, traffic will automatically continue to flow over the remaining active links, preventing a network outage.</p>
+                           <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                           <ul class="list-disc list-inside ml-4">
+                               <li><strong>Full duplex:</strong> Allows data to be sent and received simultaneously on a single link, but doesn't provide redundancy if the link itself fails.</li>
+                               <li><strong>802.1Q tagging & Native VLAN:</strong> These are features used to manage VLANs on trunk links, they don't provide physical link redundancy.</li>
+                           </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 13</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">A network administrator received complaints of intermittent network connectivity issues. The administrator investigates and finds that the network design contains potential loop scenarios. [cite_start]Which of the following should the administrator do? [cite: 74, 75, 76]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Enable spanning tree. [cite: 77]</p>
+                    <p>B. [cite_start]Configure port security. [cite: 78]</p>
+                    <p>C. [cite_start]Change switch port speed limits. [cite: 79]</p>
+                    <p>D. [cite_start]Enforce 802.1Q tagging. [cite: 80]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answer: A. Enable spanning tree.</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                            <p><strong>Why this is correct:</strong> A switching loop occurs when there are multiple paths between two switches, causing broadcast frames to circulate endlessly, consuming all available bandwidth and crashing the network. The **Spanning Tree Protocol (STP)** is specifically designed to prevent this. It intelligently detects redundant links and blocks traffic on them, ensuring there is only one active path at any time. If the primary path fails, STP automatically unblocks the redundant path to maintain connectivity.</p>
+                            <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Port security:</strong> Limits which MAC addresses can connect to a port; it doesn't prevent loops.</li>
+                                <li><strong>Port speed limits:</strong> Manages bandwidth but doesn't solve the core issue of a broadcast storm from a loop.</li>
+                                <li><strong>802.1Q tagging:</strong> Used for VLANs, not loop prevention.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+            
+            <div class="mb-8 p-6 bg-white dark:bg-gray-800 rounded-lg shadow-md">
+                <h4 class="text-lg font-semibold text-gray-800 dark:text-white mb-4">Question 39</h4>
+                <p class="text-gray-700 dark:text-gray-300 mb-4">Which of the following are environmental factors that should be considered when installing equipment in a building? (Choose two.) [cite_start][cite: 246, 247]</p>
+                <div class="space-y-2 mb-4 text-gray-600 dark:text-gray-400">
+                    <p>A. [cite_start]Fire suppression system [cite: 248]</p>
+                    <p>B. [cite_start]UPS location [cite: 249]</p>
+                    <p>C. [cite_start]Humidity control [cite: 250]</p>
+                    <p>D. [cite_start]Power load [cite: 251]</p>
+                    <p>E. [cite_start]Floor construction type [cite: 252]</p>
+                    <p>F. [cite_start]Proximity to nearest MDF [cite: 253]</p>
+                </div>
+                <details class="bg-gray-100 dark:bg-gray-700 rounded-lg p-4 transition-all duration-300">
+                    <summary class="font-semibold cursor-pointer text-blue-600 dark:text-blue-400 flex justify-between items-center">Show Answer & Explanation <span class="arrow transition-transform duration-300">▶</span></summary>
+                    <div class="mt-4">
+                        <p class="text-green-600 dark:text-green-400 font-bold mb-2">Correct Answers: C. Humidity control and D. Power load</p>
+                        <div class="explanation-section text-gray-700 dark:text-gray-300">
+                           <p><strong>Why these are correct:</strong> Environmental factors relate to the physical conditions of the surrounding area that can affect equipment operation.</p>
+                           <ul class="list-disc list-inside ml-4">
+                               <li><strong>Humidity control:</strong> Too much humidity can cause condensation and corrosion on electronic components. Too little humidity increases the risk of electrostatic discharge (ESD), which can damage sensitive chips. Proper humidity control is critical.</li>
+                               <li><strong>Power load:</strong> This is the total amount of electrical power the equipment will draw. It's an essential environmental factor to consider to ensure the building's circuits can safely handle the demand without overloading and causing power failures or fires.</li>
+                           </ul>
+                           <p class="mt-2"><strong>Why others are incorrect:</strong></p>
+                            <ul class="list-disc list-inside ml-4">
+                                <li><strong>Fire suppression system & UPS location:</strong> These are crucial safety and infrastructure planning items, but they are systems you install *into* the environment, not properties *of* the environment itself like temperature or humidity.</li>
+                                <li><strong>Floor construction type:</strong> This relates to the physical support and weight capacity, a structural concern, not an environmental one.</li>
+                                <li><strong>Proximity to nearest MDF:</strong> This is a logistical and network design consideration related to cabling distance, not an environmental factor.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </details>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
